@@ -11,10 +11,8 @@ These docs provide a high level usage overview. See
 [this sample app](https://github.com/MatthewDailey/SampleRouterApp) for an example usage and see
 the code (it's not that long).
 
-Key Parts
----------
 
-A Scene
+What is a scene?
 ------
 A scene is an individual view on the screen of the phone. An app with Scene Router is composed of a
 graph with scenes as nodes and possible transitions as edges.
@@ -27,8 +25,7 @@ between scenes.
 
 Scenes are represented as a stack and transitions either push or pop from the stack.
 
-Types of transition methods available to children.
---------------------
+**Types of transition methods available to children:**
 - `goNext(route = next)` - Push a scene to the stack. By default pushes `routeLinks['next']` on to
    the stack but can be used to have multiple next scenes by calling `goNext('fancyRoute')` which
    will push `routeLinks['fancyRoute']`.
@@ -44,9 +41,7 @@ Types of transition methods available to children.
 
 Your app's main component should be a drawer navigator which manages rendering the current route.
 
-Props
-------
-------
+**Props:**
 - `routeLinks` - Links between scenes defining possible transitions.
 - `initialRoute` - The scene which should be rendered first.
 - `renderMenu` - Render method which returns menu react component.
