@@ -2,10 +2,12 @@
   "name": "react-native-scene-router",
   "version": "1.0.0",
   "description": "Enables declaritive definition of react-native scene graph with transitions.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
+    "build": "node_modules/babel-cli/bin/babel.js src --out-dir lib",
+    "prepublish": "npm run build",
     "test": "mocha tests --compilers js:babel-core/register",
-    "start": "babel-node index.js"
+    "start": "npm run build && node lib/index.js"
   },
   "keywords": [
     "react",
