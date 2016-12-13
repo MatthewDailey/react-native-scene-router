@@ -56,8 +56,8 @@ export default class DrawerNavigator extends React.Component {
 
           const Content = route.component;
 
-          if (this.props.menuElement) {
-            const Menu = this.props.menuElement;
+          if (this.props.renderMenu) {
+            const Menu = this.props.renderMenu;
 
             return (
               <Drawer
