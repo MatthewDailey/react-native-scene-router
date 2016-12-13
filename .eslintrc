@@ -6,5 +6,8 @@
 	},
 	"plugins": [
 		"flow-vars"
-	]
+	],
+	"rules": {
+		"react/jsx-filename-extension": "off"
+	}
 }

@@ -1,4 +1,8 @@
 
-const hi : string = 'hello world after build';
+import RoutableScene from './RoutableScene';
+import DrawerNavigator from './DrawerNavigator';
 
-console.log(hi);
+module.exports = {
+  RoutableScene,
+  DrawerNavigator,
+};
