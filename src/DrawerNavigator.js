@@ -43,13 +43,14 @@ export default class DrawerNavigator extends React.Component {
       return true;
     });
 
-
     return (
       <Navigator
         ref={(c) => { this.navigator = c; }}
         initialRoute={this.props.initialRoute}
         renderScene={(route, navigator) => {
           console.log('Rendering: ', route.id);
+
+          const Content = route.component;
           return (
             <Drawer
               ref={(c) => { this.drawer = c; }}
@@ -58,7 +59,12 @@ export default class DrawerNavigator extends React.Component {
               openDrawerOffset={0.2}
               panOpenMask={0.1}
             >
-              {route.renderContent(navigator, this.props.routeLinks[route.id], this.openMenu)}
+              <Content
+                navigator={navigator}
+                routeLinks={this.props.routeLinks[route.id]}
+                openMenu={this.openMenu}
+                {...route.props}
+              />
             </Drawer>
           );
         }}

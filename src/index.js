@@ -1,8 +1,4 @@
+export default undefined;
 
-import RoutableScene from './RoutableScene';
-import DrawerNavigator from './DrawerNavigator';
-
-module.exports = {
-  RoutableScene,
-  DrawerNavigator,
-};
+export { default as RoutableScene, withNavigatorProps } from './RoutableScene';
+export { default as DrawerNavigator } from './DrawerNavigator';

@@ -1,6 +1,5 @@
 import React, { cloneElement, Component } from 'react';
-import { View, Text, TouchableHighlight, StatusBar, Platform } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, Text, StatusBar, Platform } from 'react-native';
 
 import NavigationBar from 'react-native-navbar';
 
@@ -81,27 +80,15 @@ export default class RoutableScene extends Component {
   getLeftButton() {
     if (this.props.leftIs === 'menu' && this.props.openMenu) {
       // TODO (mdailey): fix the spacing and background color of menu button.
-      return (
-        <TouchableHighlight
-          onPress={this.goMenu}
-          style={styles.navbarButton}
-          underlayColor={colors.transparent}
-          activeOpacity={0.5}
-        >
-          <Text><Icon name="bars" size={18} color={colors.secondary} /></Text>
-        </TouchableHighlight>
-      );
+      return {
+        handler: this.goMenu,
+        title: 'Menu',
+      };
     } else if (this.props.leftIs === 'back') {
-      return (
-        <TouchableHighlight
-          onPress={this.goBackHandler}
-          style={styles.navbarButton}
-          underlayColor={colors.transparent}
-          activeOpacity={0.5}
-        >
-          <Text><Icon name="chevron-left" size={18} color={colors.secondary} /></Text>
-        </TouchableHighlight>
-      );
+      return {
+        handler: this.goBackHandler,
+        title: '<',
+      };
     }
     // Return nothing. No left button.
     return undefined;
