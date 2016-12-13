@@ -72,3 +72,13 @@ export default class DrawerNavigator extends React.Component {
     );
   }
 }
+
+DrawerNavigator.propTypes = {
+  initialRoute: React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    component: React.PropTypes.element.isRequired,
+    props: React.PropTypes.object,
+  }).isRequired,
+  routeLinks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  renderMenuWithNavigator: React.PropTypes.func.isRequired,
+};
