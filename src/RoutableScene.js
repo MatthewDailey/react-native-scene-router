@@ -231,7 +231,7 @@ export default class RoutableScene extends Component {
         <NavigationBar
           tintColor={colors.primary}
           style={{ backgroundColor: colors.primary, zIndex: 2 }}
-          title={{ title }}
+          title={title}
           leftButton={this.getLeftButton()}
           rightButton={this.getRightButton()}
         />
