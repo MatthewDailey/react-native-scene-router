@@ -1,0 +1,17 @@
+{
+  "name": "react-native-scene-router",
+  "version": "1.0.0",
+  "description": "Enables declaritive definition of react-native scene graph with transitions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests --compilers js:babel-core/register"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "scene",
+    "router"
+  ],
+  "author": "mjd",
+  "license": "ISC"
+}
