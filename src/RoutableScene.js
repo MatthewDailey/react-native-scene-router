@@ -1,4 +1,4 @@
-import React, { cloneElement, Component } from 'react';
+import React, { Component } from 'react';
 import { View, Text, StatusBar, Platform } from 'react-native';
 
 import NavigationBar from 'react-native-navbar';
@@ -6,30 +6,6 @@ import NavigationBar from 'react-native-navbar';
 const colors = {
   transparent: '#00000000',
 };
-
-const styles = {
-  navbarButton: {
-    padding: 16,
-    flex: 1,
-    alignItems: 'center',
-  },
-};
-
-/*
- * Allows binding all navigator props to components which extend RoutableScene.
- *
- * @returns Function from (navigator, routeLinks, openMenu) to react element for use as the
- * route.renderContent method.
- */
-export function withNavigatorProps(reactElement) {
-  return (navigatorProp, routeLinksProp, openMenuProp) => cloneElement(
-    reactElement,
-    {
-      navigator: navigatorProp,
-      routeLinks: routeLinksProp,
-      openMenu: openMenuProp,
-    });
-}
 
 /*
  * RoutableScene is a convenience class to package the logic around having a menu bar with left and
@@ -58,7 +34,6 @@ export default class RoutableScene extends Component {
     this.goBackHandler = this.goBackHandler.bind(this);
     this.goReturn = this.goReturn.bind(this);
     this.goReturnHandler = this.goReturnHandler.bind(this);
-    this.openSimpleScene = this.openSimpleScene.bind(this);
   }
 
   onGoHome() {
@@ -79,7 +54,6 @@ export default class RoutableScene extends Component {
 
   getLeftButton() {
     if (this.props.leftIs === 'menu' && this.props.openMenu) {
-      // TODO (mdailey): fix the spacing and background color of menu button.
       return {
         handler: this.goMenu,
         title: 'Menu',
@@ -200,26 +174,27 @@ export default class RoutableScene extends Component {
     }
   }
 
-  openSimpleScene(scene) {
-    this.props.navigator.push({
-      id: 'unconnected-scene',
-      renderContent: withNavigatorProps(scene),
-    });
+  getTitle() {
+    if (typeof this.props.title === 'string') {
+      return (
+        <Text
+          style={{
+            fontSize: 25,
+            fontWeight: '300',
+            fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : undefined,
+          }}
+        >
+          {this.props.title}
+        </Text>
+      );
+    }
+    if (typeof this.props.title === 'object') {
+      return this.props.title;
+    }
+    return <View />;
   }
 
   render() {
-    const title = (
-      <Text
-        style={{
-          fontSize: 25,
-          fontWeight: '300',
-          fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : undefined,
-        }}
-      >
-        {this.props.title}
-      </Text>
-    );
-
     return (
       // Note this flex:1 style. Super fucking important to make sure listview can scroll.
       // Without it, the view will just bounce back. Who the fuck knows why.
@@ -231,7 +206,7 @@ export default class RoutableScene extends Component {
         <NavigationBar
           tintColor={colors.primary}
           style={{ backgroundColor: colors.primary, zIndex: 2 }}
-          title={title}
+          title={this.getTitle()}
           leftButton={this.getLeftButton()}
           rightButton={this.getRightButton()}
         />
@@ -248,7 +223,7 @@ RoutableScene.defaultProps = {
 };
 
 RoutableScene.propTypes = {
-  title: React.PropTypes.string,
+  title: React.PropTypes.oneOfType([ React.PropTypes.string, React.PropTypes.object ]),
   openMenu: React.PropTypes.func,
   navigator: React.PropTypes.object,
   routeLinks: React.PropTypes.object,
