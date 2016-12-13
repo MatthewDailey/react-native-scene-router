@@ -51,21 +51,41 @@ export default class DrawerNavigator extends React.Component {
           console.log('Rendering: ', route.id);
 
           const Content = route.component;
+
+          if (this.props.menuElement) {
+            const Menu = this.props.menuElement;
+
+            return (
+              <Drawer
+                ref={(c) => { this.drawer = c; }}
+                content={
+                  <Menu
+                    navigator={navigator}
+                    closeMenu={this.closeMenu}
+                    {...this.props.menuProps}
+                  />
+                }
+                tapToClose
+                openDrawerOffset={0.2}
+                panOpenMask={0.1}
+              >
+                <Content
+                  navigator={navigator}
+                  routeLinks={this.props.routeLinks[route.id]}
+                  openMenu={this.openMenu}
+                  {...route.props}
+                />
+              </Drawer>
+            );
+          }
+
           return (
-            <Drawer
-              ref={(c) => { this.drawer = c; }}
-              content={this.props.renderMenuWithNavigator(navigator, this.closeMenu)}
-              tapToClose
-              openDrawerOffset={0.2}
-              panOpenMask={0.1}
-            >
-              <Content
-                navigator={navigator}
-                routeLinks={this.props.routeLinks[route.id]}
-                openMenu={this.openMenu}
-                {...route.props}
-              />
-            </Drawer>
+            <Content
+              navigator={navigator}
+              routeLinks={this.props.routeLinks[route.id]}
+              openMenu={this.openMenu}
+              {...route.props}
+            />
           );
         }}
       />
@@ -80,5 +100,6 @@ DrawerNavigator.propTypes = {
     props: React.PropTypes.object,
   }).isRequired,
   routeLinks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  renderMenuWithNavigator: React.PropTypes.func.isRequired,
+  menuElement: React.PropTypes.element,
+  menuProps: React.PropTypes.object,
 };

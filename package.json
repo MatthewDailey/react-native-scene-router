@@ -1,6 +1,6 @@
 {
   "name": "react-native-scene-router",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Enables declaritive definition of react-native scene graph with transitions.",
   "main": "lib/index.js",
   "scripts": {
