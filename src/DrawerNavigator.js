@@ -66,7 +66,6 @@ export default class DrawerNavigator extends React.Component {
                   <Menu
                     navigator={navigator}
                     closeMenu={this.closeMenu}
-                    {...this.props.menuProps}
                   />
                 }
                 tapToClose
@@ -105,5 +104,4 @@ DrawerNavigator.propTypes = {
   }).isRequired,
   routeLinks: React.PropTypes.object,
   renderMenu: React.PropTypes.func,
-  menuProps: React.PropTypes.object,
 };
