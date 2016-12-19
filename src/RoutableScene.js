@@ -80,18 +80,20 @@ export default class RoutableScene extends Component {
       rightButton.tintColor = this.props.colors.navText;
     }
 
-    if (this.props.routeLinks.next && this.props.rightIs === 'next') {
-      rightButton.handler = this.goNextHandler;
-      rightButton.title = this.props.routeLinks.next.title;
-      return rightButton;
-    } else if (this.props.routeLinks.home && this.props.rightIs === 'home') {
-      rightButton.handler = this.goHomeHandler;
-      rightButton.title = this.props.routeLinks.home.title;
-      return rightButton;
-    } else if (this.props.routeLinks.return && this.props.rightIs === 'return') {
-      rightButton.handler = this.goReturnHandler;
-      rightButton.title = this.props.routeLinks.return.title;
-      return rightButton;
+    if (this.props.routeLinks) {
+      if (this.props.routeLinks.next && this.props.rightIs === 'next') {
+        rightButton.handler = this.goNextHandler;
+        rightButton.title = this.props.routeLinks.next.title;
+        return rightButton;
+      } else if (this.props.routeLinks.home && this.props.rightIs === 'home') {
+        rightButton.handler = this.goHomeHandler;
+        rightButton.title = this.props.routeLinks.home.title;
+        return rightButton;
+      } else if (this.props.routeLinks.return && this.props.rightIs === 'return') {
+        rightButton.handler = this.goReturnHandler;
+        rightButton.title = this.props.routeLinks.return.title;
+        return rightButton;
+      }
     }
 
     // Return nothing. No right button.
