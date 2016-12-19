@@ -87,6 +87,8 @@ export default class DrawerNavigator extends React.Component {
               navigator={navigator}
               routeLinks={this.props.routeLinks[route.id]}
               openMenu={this.openMenu}
+              navBackgroundColor={this.props.navBackgroundColor}
+              navTintColor={this.props.navTintColor}
               {...route.props}
             />
           );
@@ -104,4 +106,6 @@ DrawerNavigator.propTypes = {
   }).isRequired,
   routeLinks: React.PropTypes.object,
   renderMenu: React.PropTypes.func,
+  navBackgroundColor: React.PropTypes.string,
+  navTintColor: React.PropTypes.string,
 };

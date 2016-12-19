@@ -196,16 +196,13 @@ export default class RoutableScene extends Component {
 
   render() {
     return (
-      // Note this flex:1 style. Super fucking important to make sure listview can scroll.
-      // Without it, the view will just bounce back. Who the fuck knows why.
-      <View style={{ flex: 1, backgroundColor: colors.secondary }}>
-        <StatusBar
-          backgroundColor={colors.primary}
-          barStyle="light-content"
-        />
+      // Note this flex:1 style. Important to make sure children ListView can scroll.
+      // Without it, the view will just bounce back.
+      <View style={{ flex: 1 }}>
+        <StatusBar backgroundColor={this.props.navBackgroundColor}/>
         <NavigationBar
-          tintColor={colors.primary}
-          style={{ backgroundColor: colors.primary, zIndex: 2 }}
+          tintColor={this.props.navTintColor}
+          style={{ backgroundColor: this.props.navBackgroundColor, zIndex: 2 }}
           title={this.getTitle()}
           leftButton={this.getLeftButton()}
           rightButton={this.getRightButton()}
@@ -229,4 +226,6 @@ RoutableScene.propTypes = {
   routeLinks: React.PropTypes.object,
   leftIs: React.PropTypes.oneOf(['back', 'menu']),
   rightIs: React.PropTypes.oneOf(['next', 'home', 'return']),
+  navBackgroundColor: React.PropTypes.string,
+  navTintColor: React.PropTypes.string,
 };
