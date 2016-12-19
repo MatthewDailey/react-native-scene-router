@@ -179,6 +179,7 @@ export default class RoutableScene extends Component {
       return (
         <Text
           style={{
+            color: this.props.colors.navText,
             fontSize: 25,
             fontWeight: '300',
             fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : undefined,
@@ -226,6 +227,9 @@ RoutableScene.propTypes = {
   routeLinks: React.PropTypes.object,
   leftIs: React.PropTypes.oneOf(['back', 'menu']),
   rightIs: React.PropTypes.oneOf(['next', 'home', 'return']),
-  navBackgroundColor: React.PropTypes.string,
-  navTintColor: React.PropTypes.string,
+  colors: React.PropTypes.shape({
+    navText: React.PropTypes.string,
+    navBackground: React.PropTypes.string,
+    navTint: React.PropTypes.string,
+  })
 };
