@@ -53,25 +53,32 @@ export default class RoutableScene extends Component {
   }
 
   getLeftButton() {
-    if (this.props.leftIs === 'menu' && this.props.openMenu) {
-      return {
-        handler: this.goMenu,
-        title: 'Menu',
-      };
-    } else if (this.props.leftIs === 'back') {
-      return {
-        handler: this.goBackHandler,
-        title: '<',
-      };
+    const leftButton = {};
+
+    if (this.props.colors.navText) {
+      leftButton.tintColor = this.props.colors.navText;
     }
+
+    if (this.props.leftIs === 'menu' && this.props.openMenu) {
+      leftButton.handler = this.goMenu;
+      leftButton.title = 'Menu';
+      return leftButton;
+    } else if (this.props.leftIs === 'back') {
+      leftButton.handler = this.goBackHandler;
+      leftButton.title = '<';
+      return leftButton;
+    }
+
     // Return nothing. No left button.
     return undefined;
   }
 
   getRightButton() {
-    const rightButton = {
-      tintColor: colors.secondary,
-    };
+    const rightButton = {};
+
+    if (this.props.colors.navText) {
+      rightButton.tintColor = this.props.colors.navText;
+    }
 
     if (this.props.routeLinks.next && this.props.rightIs === 'next') {
       rightButton.handler = this.goNextHandler;
@@ -179,7 +186,7 @@ export default class RoutableScene extends Component {
       return (
         <Text
           style={{
-            color: this.props.colors.navText,
+            color: this.props.colors.navText ? this.props.colors.navText : 'black',
             fontSize: 25,
             fontWeight: '300',
             fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : undefined,
@@ -200,10 +207,10 @@ export default class RoutableScene extends Component {
       // Note this flex:1 style. Important to make sure children ListView can scroll.
       // Without it, the view will just bounce back.
       <View style={{ flex: 1 }}>
-        <StatusBar backgroundColor={this.props.navBackgroundColor}/>
+        <StatusBar backgroundColor={this.props.colors.navBackground} barStyle="default" />
         <NavigationBar
-          tintColor={this.props.navTintColor}
-          style={{ backgroundColor: this.props.navBackgroundColor, zIndex: 2 }}
+          tintColor={this.props.colors.navTint}
+          style={{ backgroundColor: this.props.colors.navBackground, zIndex: 2 }}
           title={this.getTitle()}
           leftButton={this.getLeftButton()}
           rightButton={this.getRightButton()}
