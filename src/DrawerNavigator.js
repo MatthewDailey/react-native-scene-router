@@ -10,8 +10,7 @@ import Drawer from 'react-native-drawer';
  * It takes 'props.routeLinks' which defines a series of transitions between routes and
  * 'props.initialRoute' which defines the starting node in the scene graph.
  *
- * At a minimum, an route must have an 'id' field and a method 'renderContent' which takes the
- * navigator, any routeLinks associated with the route id and the openMenu function.
+ * At a minimum, an route must have an 'id' field and a prop 'component' to render.
  *
  * For maximum utility, Routes should extend RoutableScene which provides convenience methods for
  * rendering a scene with a navigation bar and transitioning between scenes.
