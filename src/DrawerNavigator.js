@@ -75,6 +75,7 @@ export default class DrawerNavigator extends React.Component {
                   navigator={navigator}
                   routeLinks={this.props.routeLinks[route.id]}
                   openMenu={this.openMenu}
+                  colors={this.props.colors}
                   {...route.props}
                 />
               </Drawer>
@@ -85,7 +86,6 @@ export default class DrawerNavigator extends React.Component {
             <Content
               navigator={navigator}
               routeLinks={this.props.routeLinks[route.id]}
-              openMenu={this.openMenu}
               colors={this.props.colors}
               {...route.props}
             />
